@@ -8,5 +8,3 @@ python -m pip install pygame
 # Run
 python rt.py
 
-# TODO  
-Solve the weird error on Mac (it might be my machine problem)

@@ -1,10 +1,14 @@
 ﻿# -*- coding: utf-8 -*-
-import Tkinter
-import tkMessageBox
-
+import platform
+import ctypes
+import subprocess
+import re
 def dialog(title,message):
-	root = Tkinter.Tk()
-	root.withdraw()
-	tkMessageBox.showinfo(title, message)
-	root.quit()
-
+	if platform.system()=="Windows":
+		ctypes.windll.user32.MessageBoxA(0,message,title,0x00000040)
+	else:
+		str="display dialog \"%s\" with title \"%s\" with icon note buttons {\"OK\"}" %(re.sub(r'"\''," ",message), re.sub(r'"\''," ",title))#escaping ' and " on mac
+		f=open("a.txt","w")
+		f.write(str)
+		f.close()
+		subprocess.call("osascript -e '{}'".format(str), shell=True)
