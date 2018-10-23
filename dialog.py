@@ -8,7 +8,4 @@ def dialog(title,message):
 		ctypes.windll.user32.MessageBoxA(0,message,title,0x00000040)
 	else:
 		str="display dialog \"%s\" with title \"%s\" with icon note buttons {\"OK\"}" %(re.sub(r'"\''," ",message), re.sub(r'"\''," ",title))#escaping ' and " on mac
-		f=open("a.txt","w")
-		f.write(str)
-		f.close()
 		subprocess.call("osascript -e '{}'".format(str), shell=True)
